@@ -1,16 +1,16 @@
-package com.example.runningwithbill.ui.dashboard;
+package com.example.runningwithbill.ui.stats;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class DashboardViewModel extends ViewModel {
+public class StatsViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public DashboardViewModel() {
+    public StatsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+        mText.setValue("This is stats fragment");
     }
 
     public LiveData<String> getText() {
