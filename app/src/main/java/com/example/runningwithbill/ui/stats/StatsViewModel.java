@@ -10,7 +10,7 @@ public class StatsViewModel extends ViewModel {
 
     public StatsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mText.setValue("This is stats fragment");
     }
 
     public LiveData<String> getText() {
