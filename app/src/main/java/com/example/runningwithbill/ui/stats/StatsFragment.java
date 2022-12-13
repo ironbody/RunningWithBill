@@ -1,4 +1,4 @@
-package com.example.runningwithbill.ui.notifications;
+package com.example.runningwithbill.ui.stats;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,18 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.runningwithbill.databinding.FragmentNotificationsBinding;
+import com.example.runningwithbill.databinding.FragmentStatsBinding;
 
-public class NotificationsFragment extends Fragment {
+public class StatsFragment extends Fragment {
 
-    private FragmentNotificationsBinding binding;
+    private FragmentStatsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         NotificationsViewModel notificationsViewModel =
                 new ViewModelProvider(this).get(NotificationsViewModel.class);
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentStatsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textNotifications;
