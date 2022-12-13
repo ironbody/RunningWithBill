@@ -7,9 +7,10 @@
 
     <fragment
         android:id="@+id/navigation_stats"
-        android:name="com.example.runningwithbill.ui.map.MapFragment"
-        android:label="@string/title_map"
-        tools:layout="@layout/fragment_map" />
+        android:name="com.example.runningwithbill.ui.stats.StatsFragment"
+        android:label="@string/title_stats"
+        tools:layout="@layout/fragment_stats" />
+
 
     <fragment
         android:id="@+id/navigation_pets"
@@ -19,7 +20,7 @@
 
     <fragment
         android:id="@+id/navigation_map"
-        android:name="com.example.runningwithbill.ui.stats.StatsFragment"
-        android:label="@string/title_stats"
-        tools:layout="@layout/fragment_stats" />
+        android:name="com.example.runningwithbill.ui.map.MapFragment"
+        android:label="@string/title_map"
+        tools:layout="@layout/fragment_map" />
 </navigation>
