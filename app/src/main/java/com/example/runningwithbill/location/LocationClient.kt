@@ -45,6 +45,7 @@ class LocationClient(
             val locationCallback = object : LocationCallback() {
                 override fun onLocationResult(p0: LocationResult) {
                     super.onLocationResult(p0)
+                    // sends the latest location down the flow in a non-blocking way
                     p0.locations.lastOrNull()?.let { location ->
                         launch {
                             send(location)
