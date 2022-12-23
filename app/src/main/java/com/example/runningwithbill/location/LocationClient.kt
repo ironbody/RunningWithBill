@@ -66,7 +66,7 @@ class LocationClient(
         }
     }
 
-    class LocationException(message: String) : Exception()
+    class LocationException(message: String) : Exception(message)
 }
 
 fun checkLocationPermission(context: Context): Boolean {
