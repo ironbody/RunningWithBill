@@ -2,7 +2,7 @@ package com.example.runningwithbill.dataObject
 
 import androidx.lifecycle.LiveData
 
-class RWBRepository(private val RWBDao: RWBDao) {
+class PetRepository(private val RWBDao: RWBDao) {
 
     val readAllData: LiveData<List<Pet>> = RWBDao.readAllData()
     val readLevel: LiveData<Int> = RWBDao.readLevel()

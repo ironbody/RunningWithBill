@@ -1,4 +1,9 @@
 package com.example.runningwithbill.dataObject
 
-class StatRepository {
+import androidx.lifecycle.LiveData
+
+class StatRepository(private val RWBDao: RWBDao) {
+
+
+
 }

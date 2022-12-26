@@ -1,4 +1,9 @@
 package com.example.runningwithbill.dataObject
 
-class GPSRepository {
+import androidx.lifecycle.LiveData
+
+class GPSRepository(private val RWBDao: RWBDao) {
+    suspend fun addGpsCords(gps: Gps){
+        RWBDao.addGpsCords(gps)
+    }
 }

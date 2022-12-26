@@ -14,11 +14,11 @@ class DBRWBViewModel(application: Application): AndroidViewModel(application){
 
     @kotlin.jvm.JvmField
     var readAllData: LiveData<List<Pet>>
-    private val repository: RWBRepository
+    private val repository: PetRepository
 
     init {
-        val userDao = RWBDatabase.getDatabase(application).RWBDao()
-        repository = RWBRepository(userDao)
+        val rwbDao = RWBDatabase.getDatabase(application).RWBDao()
+        repository = PetRepository(rwbDao)
         readAllData = repository.readAllData
         readLevel = repository.readLevel
     }
@@ -47,11 +47,5 @@ class DBRWBViewModel(application: Application): AndroidViewModel(application){
         }
     }
 
-
-
-    /*fun readLevel(): Int {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.readLevel()
-        }*/
 
 }
