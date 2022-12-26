@@ -29,15 +29,21 @@ class DBRWBViewModel(application: Application): AndroidViewModel(application){
         }
     }
 
-    fun changeExperience(){
+    fun addExperience(xp: Int){
         viewModelScope.launch(Dispatchers.IO) {
-            repository.changeExperience()
+            repository.addExperience(xp)
         }
     }
 
     fun addPet(pet: Pet) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addPet(pet)
+        }
+    }
+
+    fun addGpsCords(gps: Gps) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addGpsCords(gps)
         }
     }
 

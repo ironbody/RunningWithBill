@@ -11,10 +11,15 @@ class RWBRepository(private val RWBDao: RWBDao) {
         RWBDao.addPet(pet)
     }
 
+
     suspend fun levelUp() {
         RWBDao.levelUp()
     }
-    suspend fun changeExperience() {
-        RWBDao.changeExperience()
+    suspend fun addExperience(xp: Int) {
+        RWBDao.addExperience(xp)
+    }
+
+    suspend fun addGpsCords(gps: Gps){
+        RWBDao.addGpsCords(gps)
     }
 }
