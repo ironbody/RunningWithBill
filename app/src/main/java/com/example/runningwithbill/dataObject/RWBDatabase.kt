@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [Pet::class], version = 1, exportSchema = false)
+@Database(entities = [Pet::class, Gps::class], version = 1, exportSchema = false)
 abstract class RWBDatabase : RoomDatabase(){
 
 
