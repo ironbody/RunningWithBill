@@ -13,4 +13,12 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="expbarColor">
+        <item name="colorAccent">@color/expbar</item>
+    </style>
+    <style name="healthbarColor">
+        <item name="colorAccent">@color/healthbar</item>
+    </style>
+
 </resources>

@@ -3,4 +3,24 @@
     <string name="title_map">Map</string>
     <string name="title_pet">Pet</string>
     <string name="title_stats">Stats</string>
+
+    <!-- Pet activity strings. -->
+    <string name="hat_image">Hat image</string>
+    <string name="head_image">Head image</string>
+    <string name="nose_image">Nose image</string>
+    <string name="body_image">Body image</string>
+    <string name="feet_image">Feet image</string>
+    <string name="ground_image">Ground image</string>
+    <string name="food_image">Food image</string>
+    <string name="food_text">Food:</string>
+    <string name="exp_text">Experience</string>
+    <string name="health_text">Health</string>
+    <string name="beakLength_text">Beak Length:</string>
+    <string name="hatHeight_text">Hat Height:</string>
+    <string name="bodyShape_text">Body Size:</string>
+    <string name="statPoints_text">Stat Points:</string>
+    <string name="statsbutton_desc">Stats button</string>
+    <string name="level_text">Level:</string>
+    <string name="feed_text">Feed Pet</string>
+
 </resources>
