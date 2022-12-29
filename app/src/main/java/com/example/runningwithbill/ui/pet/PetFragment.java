@@ -58,29 +58,29 @@ public class PetFragment extends Fragment {
         petmodel = new PetModel();
 
         //Get all buttons
-        buttons[0] = root.findViewById((R.id.beakButton));
-        buttons[1] = root.findViewById((R.id.hatButton));
-        buttons[2] = root.findViewById((R.id.bodyButton));
-        buttons[3] = root.findViewById((R.id.foodButton));
+        buttons[0] = root.findViewById(R.id.beakButton);
+        buttons[1] = root.findViewById(R.id.hatButton);
+        buttons[2] = root.findViewById(R.id.bodyButton);
+        buttons[3] = root.findViewById(R.id.foodButton);
 
         //Get all textViews
-        texts[0] = root.findViewById((R.id.beakTextView));
-        texts[1] = root.findViewById((R.id.hatTextView));
-        texts[2] = root.findViewById((R.id.bodyTextView));
-        texts[3] = root.findViewById((R.id.statPointTextView));
-        texts[4] = root.findViewById((R.id.foodTextView));
-        texts[5] = root.findViewById((R.id.levelTextView));
-        texts[6] = root.findViewById((R.id.feedPetView));
+        texts[0] = root.findViewById(R.id.beakTextView);
+        texts[1] = root.findViewById(R.id.hatTextView);
+        texts[2] = root.findViewById(R.id.bodyTextView);
+        texts[3] = root.findViewById(R.id.statPointTextView);
+        texts[4] = root.findViewById(R.id.foodTextView);
+        texts[5] = root.findViewById(R.id.levelTextView);
+        texts[6] = root.findViewById(R.id.feedPetView);
 
         //Get body parts
-        bodyParts[0] = root.findViewById(((R.id.beakView)));
-        bodyParts[1] = root.findViewById(((R.id.hatView)));
-        bodyParts[2] = root.findViewById(((R.id.bodyView)));
-        bodyParts[3] = root.findViewById(((R.id.headView)));
+        bodyParts[0] = root.findViewById(R.id.beakView);
+        bodyParts[1] = root.findViewById(R.id.hatView);
+        bodyParts[2] = root.findViewById(R.id.bodyView);
+        bodyParts[3] = root.findViewById(R.id.headView);
 
         //Get progression bar
-        pBar[0] = root.findViewById((R.id.xpBarView));
-        pBar[1] = root.findViewById((R.id.healthBarView));
+        pBar[0] = root.findViewById(R.id.xpBarView);
+        pBar[1] = root.findViewById(R.id.healthBarView);
 
         //Set width/height
         beakWidth = bodyParts[0].getLayoutParams().width;
