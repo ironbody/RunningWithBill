@@ -2,5 +2,15 @@
     <string name="app_name">RunningWithBill</string>
     <string name="title_map">Map</string>
     <string name="title_pet">Pet</string>
+
     <string name="title_stats">Stats</string>
+    <string name="header_goals">Goals</string>
+    <string name="first_goal">10k</string>
+    <string name="second_goal">25k</string>
+    <string name="third_goal">50k</string>
+    <string name="fourth_goal">100k</string>
+    <string name="dayButton">Day</string>
+    <string name="weekButton">Week</string>
+    <string name="monthButton">Month</string>
+
 </resources>
