@@ -1,5 +1,9 @@
 package com.example.runningwithbill.location
 
+// this code is taken from a tutorial by Philipp Lackner,
+// "How to Track Your Users Location in the Background in Android - Android Studio Tutorial" on youtube
+// 2022
+
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
