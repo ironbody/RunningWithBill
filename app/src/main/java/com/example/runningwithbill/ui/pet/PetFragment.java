@@ -24,6 +24,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.runningwithbill.R;
 import com.example.runningwithbill.databinding.FragmentPetBinding;
+import com.example.runningwithbill.dataObject.DBPetViewModel;
 
 import com.example.runningwithbill.models.PetModel;
 
@@ -56,6 +57,9 @@ public class PetFragment extends Fragment {
 
         //Create objects
         petmodel = new PetModel();
+        DBPetViewModel petDb;
+        petDb = new ViewModelProvider(this).get(DBPetViewModel.class);
+
 
         //Get all buttons
         buttons[0] = root.findViewById(R.id.beakButton);
@@ -87,6 +91,15 @@ public class PetFragment extends Fragment {
         hatHeight = bodyParts[1].getLayoutParams().height;
         bodyWidth = bodyParts[2].getLayoutParams().width;
         bodyHeight = bodyParts[2].getLayoutParams().height;
+
+        Log.d("START DEBUG:", "HEJSAN");
+
+        //Read
+        petDb.readLevel.observe(getViewLifecycleOwner(), levelNR -> {
+            //texts[5].setText(levelNR);
+            //Log.d("ReadLevel:", levelNR.toString());
+        });
+        //Write DB
 
         //Constrain
         layout = root.findViewById(R.id.petConstraint);
