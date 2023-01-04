@@ -7,7 +7,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.util.Observer;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -25,7 +24,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.runningwithbill.R;
-import com.example.runningwithbill.dataObject.Pet;
 import com.example.runningwithbill.databinding.FragmentPetBinding;
 import com.example.runningwithbill.dataObject.DBPetViewModel;
 
@@ -109,10 +107,8 @@ public class PetFragment extends Fragment {
         updateProgressBar();
         updateBodyParts(PetViews.ALL);
 
-        //Shake
+        //Shake and tap
         shakeDetection();
-
-        //Tap
         tapDetection();
 
         return root;
@@ -120,7 +116,6 @@ public class PetFragment extends Fragment {
 
     //Private functions
     private void onClickEvent() {
-
         //Beak button
         buttons[0].setOnClickListener(view -> {
             addStats(PetViews.BEAK, 1);
@@ -153,6 +148,7 @@ public class PetFragment extends Fragment {
         buttons[3].setOnClickListener(view -> {
             foodState *= -1;
             updateButtons();
+
         });
 
     }
@@ -160,40 +156,34 @@ public class PetFragment extends Fragment {
     private void updateTexts(PetViews stat) {
         switch(stat){
             case BEAK:
-                petDb.readBeakLenght.observe(getViewLifecycleOwner(), nr -> {
-                    texts[0].setText(getResources().getText(R.string.beakLength_text).toString()
-                            + " " + nr);
-                });
+                petDb.readBeakLenght.observe(getViewLifecycleOwner(), nr ->
+                        texts[0].setText(getResources().getText(R.string.beakLength_text).toString()
+                        + " " + nr));
                 break;
             case HAT:
-                petDb.readHatHeight.observe(getViewLifecycleOwner(), nr -> {
-                    texts[1].setText(getResources().getText(R.string.hatHeight_text).toString()
-                            + " " + nr);
-                });
+                petDb.readHatHeight.observe(getViewLifecycleOwner(), nr ->
+                        texts[1].setText(getResources().getText(R.string.hatHeight_text).toString()
+                        + " " + nr));
                 break;
             case BODY:
-                petDb.readBodySize.observe(getViewLifecycleOwner(), nr -> {
-                    texts[2].setText(getResources().getText(R.string.bodyShape_text).toString()
-                            + " " + nr);
-                });
+                petDb.readBodySize.observe(getViewLifecycleOwner(), nr ->
+                        texts[2].setText(getResources().getText(R.string.bodyShape_text).toString()
+                        + " " + nr));
                 break;
             case STAT_POINT:
-                petDb.readStatPoints.observe(getViewLifecycleOwner(), nr -> {
-                    texts[3].setText(getResources().getText(R.string.statPoints_text).toString()
-                    + " " + nr);
-                });
+                petDb.readStatPoints.observe(getViewLifecycleOwner(), nr ->
+                        texts[3].setText(getResources().getText(R.string.statPoints_text).toString()
+                        + " " + nr));
                 break;
             case FOOD:
-                petDb.readFood.observe(getViewLifecycleOwner(), nr -> {
-                    texts[4].setText(getResources().getText(R.string.food_text).toString()
-                            + " " + nr);
-                });
+                petDb.readFood.observe(getViewLifecycleOwner(), nr ->
+                        texts[4].setText(getResources().getText(R.string.food_text).toString()
+                        + " " + nr));
                 break;
             case LEVEL:
-                petDb.readLevel.observe(getViewLifecycleOwner(), nr -> {
-                    texts[5].setText(getResources().getText(R.string.level_text).toString()
-                            + " " + nr);
-                });
+                petDb.readLevel.observe(getViewLifecycleOwner(), nr ->
+                        texts[5].setText(getResources().getText(R.string.level_text).toString()
+                        + " " + nr));
                 break;
             case ALL:
                 updateTexts(PetViews.BEAK);
@@ -219,7 +209,7 @@ public class PetFragment extends Fragment {
             }
         });
 
-        if(petmodel.getFeedState() == 1) {
+        if(foodState == 1) {
             texts[6].setVisibility(View.VISIBLE);
         }
         else {
@@ -270,27 +260,25 @@ public class PetFragment extends Fragment {
         }
     }
     private void updateProgressBar() {
-        petDb.readExperience.observe(getViewLifecycleOwner(), nr -> {
-            pBar[0].setProgress(nr);
-        });
-        petDb.readHealth.observe(getViewLifecycleOwner(), nr -> {
-            pBar[1].setProgress(nr);
-        });
+        petDb.readExperience.observe(getViewLifecycleOwner(), nr -> pBar[0].setProgress(nr));
+        petDb.readHealth.observe(getViewLifecycleOwner(), nr -> pBar[1].setProgress(nr));
     }
     private void feedPet(){
         if(foodState == 1)
         {
-            petDb.readFood.observe(getViewLifecycleOwner(), nr -> {
-                if(nr > 0) {
-                    petDb.addHealth(20);
-                    petDb.addFood(-1);
-                    foodState = -1;
-                    updateTexts(PetViews.FOOD);
-                    updateButtons();
-                    updateProgressBar();
-                }
-            });
-            //foodState = -1;
+            AtomicInteger temp = new AtomicInteger();
+            petDb.readFood.observe(getViewLifecycleOwner(), temp::set);
+
+            if(temp.get() > 0){
+                petDb.addHealth(20);
+                petDb.addFood(-1);
+                foodState = -1;
+                updateTexts(PetViews.FOOD);
+                updateButtons();
+                updateProgressBar();
+            }
+            foodState = -1;
+            updateButtons();
         }
     }
     private void shakeDetection() {
@@ -323,7 +311,6 @@ public class PetFragment extends Fragment {
     }
     @SuppressLint("ClickableViewAccessibility")
     private void tapDetection() {
-
         bodyParts[2].setOnTouchListener((view, motionEvent) -> {
             feedPet();
             return false;
@@ -332,59 +319,54 @@ public class PetFragment extends Fragment {
     }
 
     private void readFromDataBase() {
-
         //Text views
-        petDb.readBeakLenght.observe(getViewLifecycleOwner(), nr -> {
-            texts[0].setText(String.valueOf(nr));
-        });
-        petDb.readHatHeight.observe(getViewLifecycleOwner(), nr -> {
-            texts[1].setText(String.valueOf(nr));
-        });
-        petDb.readBodySize.observe(getViewLifecycleOwner(), nr -> {
-            texts[2].setText(String.valueOf(nr));
-        });
-        petDb.readStatPoints.observe(getViewLifecycleOwner(), nr -> {
-            texts[3].setText(String.valueOf(nr));
-        });
-        petDb.readFood.observe(getViewLifecycleOwner(), nr -> {
-            texts[4].setText(String.valueOf(nr));
-        });
-        petDb.readLevel.observe(getViewLifecycleOwner(), nr -> {
-            texts[5].setText(String.valueOf(nr));
-        });
+        petDb.readBeakLenght.observe(getViewLifecycleOwner(), nr -> texts[0].setText(String.valueOf(nr)));
+        petDb.readHatHeight.observe(getViewLifecycleOwner(), nr -> texts[1].setText(String.valueOf(nr)));
+        petDb.readBodySize.observe(getViewLifecycleOwner(), nr -> texts[2].setText(String.valueOf(nr)));
+        petDb.readStatPoints.observe(getViewLifecycleOwner(), nr -> texts[3].setText(String.valueOf(nr)));
+        petDb.readFood.observe(getViewLifecycleOwner(), nr -> texts[4].setText(String.valueOf(nr)));
+        petDb.readLevel.observe(getViewLifecycleOwner(), nr -> texts[5].setText(String.valueOf(nr)));
 
         //Progressbar
-        petDb.readExperience.observe(getViewLifecycleOwner(), nr -> {
-            pBar[0].setProgress(nr);
-        });
-        petDb.readHealth.observe(getViewLifecycleOwner(), nr -> {
-            pBar[1].setProgress(nr);
-        });
+        petDb.readExperience.observe(getViewLifecycleOwner(), nr -> pBar[0].setProgress(nr));
+        petDb.readHealth.observe(getViewLifecycleOwner(), nr -> pBar[1].setProgress(nr));
 
     }
     private void addStats(PetViews stat, int value) {
+        AtomicInteger temp = new AtomicInteger();
+        petDb.readStatPoints.observe(getViewLifecycleOwner(), temp::set);
 
-        petDb.readStatPoints.observe(getViewLifecycleOwner(), nr -> {
-            if(nr > 0) {
-                switch(stat) {
-                    case BEAK:
-                        petDb.addBeakLength(value);
-                        break;
-                    case HAT:
-                        petDb.addHatHeight(value);
-                        break;
-                    case BODY:
-                        petDb.addBodySize(value);
-                        break;
-                    default:
-                        break;
-                }
-                petDb.addStatPoints(-1);
-            } else {
-                Log.d("Stats: ", "No stat points");
+        if(temp.get() > 0) {
+            switch(stat) {
+                case BEAK:
+                    petDb.addBeakLength(value);
+                    break;
+                case HAT:
+                    petDb.addHatHeight(value);
+                    break;
+                case BODY:
+                    petDb.addBodySize(value);
+                    break;
+                default:
+                    break;
             }
+            petDb.addStatPoints(-1);
+        }
+    }
 
+    private void resetDataBase() {
+        petDb.readStatPoints.observe(getViewLifecycleOwner(), nr -> petDb.addStatPoints(-nr + 10));
+        petDb.readBeakLenght.observe(getViewLifecycleOwner(), nr -> petDb.addBeakLength(-nr + 1));
+        petDb.readHatHeight.observe(getViewLifecycleOwner(), nr -> petDb.addHatHeight(-nr + 1));
+        petDb.readBodySize.observe(getViewLifecycleOwner(), nr -> petDb.addBodySize(-nr + 1));
+        petDb.readHealth.observe(getViewLifecycleOwner(), nr -> petDb.addHealth(-nr + 100));
+        petDb.readExperience.observe(getViewLifecycleOwner(), nr -> petDb.addExperience(-nr));
+        petDb.readLevel.observe(getViewLifecycleOwner(), nr -> {
+            //petDb.addLe(-nr + 10);
         });
+        petDb.readFood.observe(getViewLifecycleOwner(), nr -> petDb.addFood(-nr + 5));
+
+
     }
 
     @Override
