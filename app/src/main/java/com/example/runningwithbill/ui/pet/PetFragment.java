@@ -47,30 +47,6 @@ public class PetFragment extends Fragment {
                 0
         );
 
-        binding.startLocationButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Context ctx = activity.getApplicationContext();
-                        Intent intent = new Intent(ctx, LocationService.class);
-                        intent.setAction(LocationService.ACTION_START);
-                        activity.startService(intent);
-                    }
-                }
-        );
-
-        binding.stopLocationButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Context ctx = activity.getApplicationContext();
-                        Intent intent = new Intent(ctx, LocationService.class);
-                        intent.setAction(LocationService.ACTION_STOP);
-                        activity.startService(intent);
-                    }
-                }
-        );
-
         return root;
     }
 
