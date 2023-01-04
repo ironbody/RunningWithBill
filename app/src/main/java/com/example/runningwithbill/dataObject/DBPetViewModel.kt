@@ -41,11 +41,6 @@ class DBRWBViewModel(application: Application): AndroidViewModel(application){
         }
     }
 
-    fun addGpsCords(gps: Gps) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.addGpsCords(gps)
-        }
-    }
 
 
 }

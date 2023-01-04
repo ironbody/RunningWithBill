@@ -3,6 +3,7 @@ package com.example.runningwithbill.dataObject
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo
+import java.util.*
 
 @Entity(tableName = "pet")
 data class Pet(
@@ -31,8 +32,15 @@ data class Stats(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     @ColumnInfo(defaultValue = "0")
-    val m: Int,
-)
+    val dayMeters: Int,
+    @ColumnInfo(defaultValue = "0")
+    val weekMeters: Int,
+    @ColumnInfo(defaultValue = "0")
+    val monthMeters: Int,
+    @ColumnInfo(defaultValue = "0")
+    val totalMeters: Int,
+
+    )
 
 @Entity(tableName = "gps")
 data class Gps(

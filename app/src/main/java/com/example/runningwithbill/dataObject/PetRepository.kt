@@ -19,7 +19,4 @@ class PetRepository(private val RWBDao: RWBDao) {
         RWBDao.addExperience(xp)
     }
 
-    suspend fun addGpsCords(gps: Gps){
-        RWBDao.addGpsCords(gps)
-    }
 }

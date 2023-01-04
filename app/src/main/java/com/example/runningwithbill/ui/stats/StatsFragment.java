@@ -10,7 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.runningwithbill.R;
+import com.example.runningwithbill.dataObject.DBStatViewModel;
+import com.example.runningwithbill.dataObject.Stats;
 import com.example.runningwithbill.databinding.FragmentStatsBinding;
+
+import com.example.runningwithbill.dataObject.DBStatViewModel;
 
 public class StatsFragment extends Fragment {
 
@@ -26,6 +31,19 @@ public class StatsFragment extends Fragment {
 
         final TextView textView = binding.textNotifications;
         notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        DBStatViewModel DBStats;
+        DBStats = new ViewModelProvider(this).get(DBStatViewModel.class);
+
+        // Stats stats = new Stats(0, 0,0,0,0);
+
+        // DBStats.addStats(stats);
+
+        TextView totalText = root.findViewById(R.id.totalDistanceNumber);
+        DBStats.readTotal.observe(getViewLifecycleOwner(), totalNR -> {
+            totalText.setText(totalNR.toString());
+        });
+
         return root;
     }
 
