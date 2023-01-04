@@ -7,11 +7,24 @@
     tools:context=".ui.stats.NotificationsFragment">
 
     <TextView
+        android:id="@+id/totalDistanceNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="332dp"
+        android:text="@string/total_distance_number"
+        android:textAlignment="center"
+        android:textColor="@color/purple_700"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
         android:id="@+id/headerGoals"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/header_goals"
         android:textAlignment="center"
+        android:textColor="@color/purple_500"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.436"
@@ -19,28 +32,27 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/firstGoalImage"
+        android:id="@+id/fourthGoalImage"
         android:layout_width="59dp"
         android:layout_height="65dp"
-        android:layout_marginStart="312dp"
         android:layout_marginTop="60dp"
-        android:contentDescription="@string/fab_transformation_scrim_behavior"
-        android:src="@android:drawable/btn_star_big_on"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/secondGoalImage"
-        android:layout_width="59dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="224dp"
-        android:layout_marginTop="60dp"
-        android:src="@android:drawable/btn_star_big_on"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="40dp"
+        android:src="@android:drawable/btn_star_big_off"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/thirdGoalImage"
+        android:layout_width="59dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="128dp"
+        android:src="@android:drawable/btn_star_big_off"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/secondGoalImage"
         android:layout_width="59dp"
         android:layout_height="65dp"
         android:layout_marginStart="124dp"
@@ -50,14 +62,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/fourthGoalImage"
+        android:id="@+id/firstGoalImage"
         android:layout_width="59dp"
         android:layout_height="65dp"
-        android:layout_marginStart="33dp"
+        android:layout_marginStart="34dp"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="319dp"
         android:src="@android:drawable/btn_star_big_on"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,24 +75,26 @@
         android:id="@+id/fourthGoalText"
         android:layout_width="56dp"
         android:layout_height="39dp"
-        android:layout_marginStart="315dp"
         android:layout_marginTop="132dp"
+        android:layout_marginEnd="40dp"
         android:text="@string/fourth_goal"
         android:textAlignment="center"
+        android:textColor="@android:color/darker_gray"
         android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/thirdGoalText"
         android:layout_width="56dp"
         android:layout_height="39dp"
-        android:layout_marginStart="227dp"
         android:layout_marginTop="132dp"
+        android:layout_marginEnd="128dp"
         android:text="@string/third_goal"
         android:textAlignment="center"
+        android:textColor="@android:color/darker_gray"
         android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -93,6 +105,7 @@
         android:layout_marginTop="132dp"
         android:text="@string/second_goal"
         android:textAlignment="center"
+        android:textColor="@color/purple_200"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -105,6 +118,7 @@
         android:layout_marginTop="132dp"
         android:text="@string/first_goal"
         android:textAlignment="center"
+        android:textColor="@color/purple_200"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -113,10 +127,10 @@
         android:id="@+id/weekButton"
         android:layout_width="93dp"
         android:layout_height="58dp"
-        android:layout_marginStart="158dp"
-        android:layout_marginEnd="159dp"
-        android:layout_marginBottom="289dp"
-        android:text="@string/weekButton"
+        android:layout_marginStart="160dp"
+        android:layout_marginEnd="158dp"
+        android:layout_marginBottom="244dp"
+        android:text="@string/week_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -125,33 +139,54 @@
         android:id="@+id/dayButton"
         android:layout_width="93dp"
         android:layout_height="58dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginEnd="287dp"
-        android:layout_marginBottom="289dp"
-        android:text="@string/dayButton"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="244dp"
+        android:text="@string/day_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/monthButton"
         android:layout_width="93dp"
         android:layout_height="57dp"
-        android:layout_marginStart="280dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginBottom="289dp"
-        android:text="@string/monthButton"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="244dp"
+        android:text="@string/month_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/text_notifications"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginBottom="80dp"
         android:textAlignment="center"
+        android:textColor="@color/purple_500"
         android:textSize="20sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-16dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/distanceDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="140dp"
+        android:text="@string/distance_day"
+        android:textAlignment="center"
+        android:textColor="@color/purple_700"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/distanceHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="196dp"
+        android:text="@string/total_distance_header"
+        android:textAlignment="center"
+        android:textColor="@color/purple_500"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
