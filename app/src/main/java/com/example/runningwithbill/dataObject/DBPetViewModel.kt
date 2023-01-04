@@ -12,7 +12,7 @@ class DBPetViewModel(application: Application): AndroidViewModel(application){
     @kotlin.jvm.JvmField
     var readLevel: LiveData<Int>
     @kotlin.jvm.JvmField
-    var readExperience: LiveData<Float>
+    var readExperience: LiveData<Int>
     @kotlin.jvm.JvmField
     var readHealth: LiveData<Int>
     @kotlin.jvm.JvmField
@@ -53,6 +53,42 @@ class DBPetViewModel(application: Application): AndroidViewModel(application){
     fun addExperience(xp: Int){
         viewModelScope.launch(Dispatchers.IO) {
             repository.addExperience(xp)
+        }
+    }
+
+    fun addHealth(value: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addHealth(value)
+        }
+    }
+
+    fun addFood(value: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addFood(value)
+        }
+    }
+
+    fun addBeakLength(value: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addBeakLength(value)
+        }
+    }
+
+    fun addHatHeight(value: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addHatHeight(value)
+        }
+    }
+
+    fun addBodySize(value: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addBodySize(value)
+        }
+    }
+
+    fun addStatPoints(value: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addStatPoints(value)
         }
     }
 

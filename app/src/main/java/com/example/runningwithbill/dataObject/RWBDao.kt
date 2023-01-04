@@ -19,6 +19,24 @@ interface RWBDao {
     @Query("UPDATE pet SET experience = (experience + :xp) WHERE id = 1")
     suspend fun addExperience(xp: Int)
 
+    @Query("UPDATE pet SET health = (health + :value) WHERE id = 1")
+    suspend fun addHealth(value: Int)
+
+    @Query("UPDATE pet SET food = (food + :value) WHERE id = 1")
+    suspend fun addFood(value: Int)
+
+    @Query("UPDATE pet SET beakLength = (beakLength + :value) WHERE id = 1")
+    suspend fun addBeakLength(value: Int)
+
+    @Query("UPDATE pet SET hatHeight = (hatHeight + :value) WHERE id = 1")
+    suspend fun addHatHeight(value: Int)
+
+    @Query("UPDATE pet SET bodySize = (bodySize + :value) WHERE id = 1")
+    suspend fun addBodySize(value: Int)
+
+    @Query("UPDATE pet SET statPoints = (statPoints + :value) WHERE id = 1")
+    suspend fun addStatPoints(value: Int)
+
     //Read functions
     @Query("SELECT * FROM pet ORDER BY id ASC")
     fun readAllData(): LiveData<List<Pet>>
@@ -27,7 +45,7 @@ interface RWBDao {
     fun readLevel(): LiveData<Int>
 
     @Query("SELECT experience FROM pet WHERE id = 1")
-    fun readExperience(): LiveData<Float>
+    fun readExperience(): LiveData<Int>
 
     @Query("SELECT health FROM pet WHERE id = 1")
     fun readHealth(): LiveData<Int>

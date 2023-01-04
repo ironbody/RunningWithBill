@@ -3,6 +3,9 @@ package com.example.runningwithbill.models;
 import android.content.Context;
 import android.util.Log;
 import com.example.runningwithbill.ui.pet.PetViews;
+import com.example.runningwithbill.dataObject.DBPetViewModel;
+
+import dagger.hilt.android.ViewModelLifecycle;
 
 public class PetModel {
 
@@ -10,7 +13,7 @@ public class PetModel {
     final int HEALTH_GET_FROM_FOOD = 20;
 
     //Public variables
-    public PetModel() {}
+    public PetModel() {};
 
     //Private variables
     private int current_beak_length = 0;
@@ -76,6 +79,11 @@ public class PetModel {
         return false;
     }
 
+    public void init() {
+
+
+    }
+
     //Private functions
     private void useFood() {
         current_health += HEALTH_GET_FROM_FOOD;
@@ -92,5 +100,15 @@ public class PetModel {
     public int getLevel() { return current_level;}
     public int getHealth() { return current_health;}
     public int getExperience() { return current_experience; }
+
+    //Set functions
+    public void setBeakLength(int value) { current_beak_length = value;}
+    public void setHatHeight(int value) { current_hat_height = value; }
+    public void setBodySize(int value) { current_body_shape = value; }
+    public void setStatPoints(int value) { current_stats_point = value; }
+    public void setLevel(int value) { current_level = value;}
+    public void setFood(int value) { current_food = value; }
+    public void setHealth(int value) { current_health = value; }
+    public void setExperience(int value) { current_experience = value; }
 
 }
