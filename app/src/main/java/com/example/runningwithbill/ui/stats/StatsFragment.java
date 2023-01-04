@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.runningwithbill.R;
 import com.example.runningwithbill.databinding.FragmentStatsBinding;
 
 public class StatsFragment extends Fragment {
@@ -26,6 +27,44 @@ public class StatsFragment extends Fragment {
 
         final TextView textView = binding.textNotifications;
         notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        binding.dayButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view)
+                    {
+                        final TextView example = root.findViewById( R.id.dynamicDistanceText);
+                        example.setText(R.string.distance_day);
+                    }
+                }
+        );
+
+        binding.weekButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view)
+                    {
+                        final TextView example = root.findViewById( R.id.dynamicDistanceText);
+                        example.setText(R.string.distance_week);
+
+                    }
+                }
+        );
+
+        binding.monthButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view)
+                    {
+                        final TextView example = root.findViewById( R.id.dynamicDistanceText);
+                        example.setText(R.string.distance_month);
+
+                    }
+                }
+        );
+
+
+
         return root;
     }
 
