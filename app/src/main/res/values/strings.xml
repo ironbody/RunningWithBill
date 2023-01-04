@@ -2,5 +2,19 @@
     <string name="app_name">RunningWithBill</string>
     <string name="title_map">Map</string>
     <string name="title_pet">Pet</string>
+
     <string name="title_stats">Stats</string>
+    <string name="header_goals">Goals</string>
+    <string name="first_goal">10k</string>
+    <string name="second_goal">25k</string>
+    <string name="third_goal">50k</string>
+    <string name="fourth_goal">100k</string>
+    <string name="day_button">Day</string>
+    <string name="week_button">Week</string>
+    <string name="month_button">Month</string>
+    <string name="total_distance_header">Total:</string>
+    <string name="total_distance_number">27837.93k</string>
+    <string name="distance_day">1.36k</string>
+    <string name="distance_week">8.45k</string>
+    <string name="distance_month">24.352k</string>
 </resources>
