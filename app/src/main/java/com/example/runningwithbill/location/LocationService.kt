@@ -20,6 +20,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.*
 
 const val FIVE_SEC: Long = 5 * 1000
+const val MIN_DIST: Float = 0f
 
 class LocationService : Service() {
 
@@ -65,7 +66,7 @@ class LocationService : Service() {
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         locationClient
-            .getLocationUpdates(FIVE_SEC)
+            .getLocationUpdates(FIVE_SEC, MIN_DIST)
             .catch { e -> e.printStackTrace() }
             .onEach { location ->
                 val lat = location.latitude
