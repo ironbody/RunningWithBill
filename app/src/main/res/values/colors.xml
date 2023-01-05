@@ -7,4 +7,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="expbar">#d6b633</color>
+    <color name="healthbar">#d65129</color>
 </resources>

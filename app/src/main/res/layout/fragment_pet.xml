@@ -2,22 +2,291 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainConstraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.pet.PetFragment">
 
-    <TextView
-        android:id="@+id/text_dashboard"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/foodConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="59dp">
+
+                <TextView
+                    android:id="@+id/foodTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/food_text"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/foodButton"
+                    app:layout_constraintStart_toEndOf="@+id/foodButton"
+                    app:layout_constraintTop_toTopOf="@+id/foodButton" />
+
+                <ImageButton
+                    android:id="@+id/foodButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:background="#FFFFFF"
+                    android:contentDescription="@string/food_image"
+                    android:soundEffectsEnabled="false"
+                    android:src="@drawable/food"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:id="@+id/feedPetView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/feed_text"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/petConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="439dp">
+
+
+                <ProgressBar
+                    android:id="@+id/xpBarView"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="200dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="103dp"
+                    android:layout_marginEnd="109dp"
+                    android:layout_marginBottom="8dp"
+                    android:max="100"
+                    android:progress="50"
+                    android:scaleY="4.0"
+                    android:theme="@style/expbarColor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/expViewText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/exp_text"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@+id/xpBarView"
+                    app:layout_constraintStart_toStartOf="@+id/xpBarView" />
+
+                <TextView
+                    android:id="@+id/healthViewText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/health_text"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@+id/healthBarView"
+                    app:layout_constraintStart_toStartOf="@+id/healthBarView" />
+
+                <ProgressBar
+                    android:id="@+id/healthBarView"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="200dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="103dp"
+                    android:layout_marginEnd="109dp"
+                    android:layout_marginBottom="8dp"
+                    android:max="100"
+                    android:progress="50"
+                    android:scaleY="4.0"
+                    android:theme="@style/healthbarColor"
+                    app:layout_constraintBottom_toTopOf="@+id/expViewText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:id="@+id/groundView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/ground_image"
+                    android:src="@drawable/ground"
+                    app:layout_constraintBottom_toTopOf="@+id/healthViewText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:id="@+id/bodyView"
+                    android:layout_width="137dp"
+                    android:layout_height="76dp"
+                    android:layout_marginBottom="12dp"
+                    android:contentDescription="@string/body_image"
+                    android:src="@drawable/body"
+                    app:layout_constraintBottom_toBottomOf="@+id/feetView"
+                    app:layout_constraintEnd_toEndOf="@+id/groundView"
+                    app:layout_constraintHorizontal_bias="0.462"
+                    app:layout_constraintStart_toStartOf="@+id/groundView"
+                    tools:ignore="ImageContrastCheck" />
+
+                <ImageView
+                    android:id="@+id/feetView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:contentDescription="@string/feet_image"
+                    android:src="@drawable/feet"
+                    app:layout_constraintBottom_toBottomOf="@+id/groundView"
+                    app:layout_constraintEnd_toEndOf="@+id/groundView"
+                    app:layout_constraintHorizontal_bias="0.388"
+                    app:layout_constraintStart_toStartOf="@+id/groundView"
+                    tools:ignore="ImageContrastCheck" />
+
+                <ImageView
+                    android:id="@+id/headView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="52dp"
+                    android:contentDescription="@string/head_image"
+                    android:src="@drawable/head"
+                    app:layout_constraintBottom_toBottomOf="@+id/bodyView"
+                    app:layout_constraintEnd_toEndOf="@+id/bodyView"
+                    tools:ignore="ImageContrastCheck" />
+
+                <ImageView
+                    android:id="@+id/beakView"
+                    android:layout_width="69dp"
+                    android:layout_height="23dp"
+                    android:layout_marginStart="56dp"
+                    android:layout_marginBottom="16dp"
+                    android:contentDescription="@string/nose_image"
+                    android:src="@drawable/beak"
+                    app:layout_constraintBottom_toBottomOf="@+id/headView"
+                    app:layout_constraintStart_toStartOf="@+id/headView"
+                    tools:ignore="ImageContrastCheck" />
+
+                <ImageView
+                    android:id="@+id/hatView"
+                    android:layout_width="94dp"
+                    android:layout_height="62dp"
+                    android:contentDescription="@string/hat_image"
+                    android:src="@drawable/tophat"
+                    app:layout_constraintBottom_toTopOf="@+id/headView"
+                    app:layout_constraintEnd_toEndOf="@+id/headView"
+                    app:layout_constraintStart_toStartOf="@+id/headView" />
+
+                <TextView
+                    android:id="@+id/levelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="260dp"
+                    android:text="@string/level_text"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/groundView"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/statsConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="273dp">
+
+                <ImageButton
+                    android:id="@+id/hatButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="@string/statsbutton_desc"
+                    android:src="@drawable/addstatsicon"
+                    app:layout_constraintBottom_toBottomOf="@+id/hatTextView"
+                    app:layout_constraintEnd_toStartOf="@+id/hatTextView"
+                    app:layout_constraintTop_toTopOf="@+id/hatTextView"
+                    tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
+
+                <ImageButton
+                    android:id="@+id/bodyButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="@string/statsbutton_desc"
+                    android:src="@drawable/addstatsicon"
+                    app:layout_constraintBottom_toBottomOf="@+id/bodyTextView"
+                    app:layout_constraintEnd_toStartOf="@+id/bodyTextView"
+                    app:layout_constraintTop_toTopOf="@+id/bodyTextView" />
+
+                <ImageButton
+                    android:id="@+id/beakButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="@string/statsbutton_desc"
+                    android:src="@drawable/addstatsicon"
+                    app:layout_constraintBottom_toBottomOf="@+id/beakTextView"
+                    app:layout_constraintEnd_toStartOf="@+id/beakTextView"
+                    app:layout_constraintTop_toTopOf="@+id/beakTextView" />
+
+                <TextView
+                    android:id="@+id/statPointTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/statPoints_text"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/beakTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/beakLength_text"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/statPointTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/statPointTextView" />
+
+                <TextView
+                    android:id="@+id/hatTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/hatHeight_text"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/beakTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/beakTextView" />
+
+                <TextView
+                    android:id="@+id/bodyTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/bodyShape_text"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/hatTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/hatTextView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
-    PetModel model = new PetModel(null,null);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,5 +42,4 @@ public class MainActivity extends AppCompatActivity {
         intent.setAction(LocationService.ACTION_START);
         startService(intent);
     }
-
 }

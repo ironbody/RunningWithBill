@@ -11,7 +11,7 @@ data class Pet(
     @ColumnInfo(defaultValue = "1")
     val level: Int,
     @ColumnInfo(defaultValue = "0")
-    val experience: Float,
+    val experience: Int,
     @ColumnInfo(defaultValue = "100")
     val health: Int,
     @ColumnInfo(defaultValue = "0")
