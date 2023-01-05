@@ -357,8 +357,8 @@ public class PetFragment extends Fragment {
     private void levelUp() {
         petDb.readExperience.observe(getViewLifecycleOwner(), nr-> {
                     if(nr > MAX_EXP) {
-                        //petDb.addLevel(1);
-                        petDb.addExperience(-100);
+                        petDb.levelUp();
+                        petDb.addExperience(-nr);
                     }
                 });
 
