@@ -5,6 +5,7 @@ package com.example.runningwithbill.location
 // 2022
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
@@ -16,17 +17,16 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class LocationClient(
     private val context: Context,
     private val client: FusedLocationProviderClient
 ) {
-    private val minDistance = 10f
 
-    fun getLocationUpdates(intervalMillis: Long): Flow<Location> {
+    @SuppressLint("MissingPermission")
+    fun getLocationUpdates(intervalMillis: Long, minDistance: Float): Flow<Location> {
         return callbackFlow {
             if (!checkLocationPermission(context)) {
                 throw LocationException("Missing location permission")
