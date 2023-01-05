@@ -9,6 +9,7 @@ import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.location.Location
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import com.example.runningwithbill.R
@@ -20,7 +21,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.*
 
 const val FIVE_SEC: Long = 5 * 1000
-const val MIN_DIST: Float = 0f
+const val MIN_DIST: Float = 3f
 
 class LocationService : Service() {
 
@@ -65,14 +66,19 @@ class LocationService : Service() {
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
+        val distanceTravelled = getDistanceTravelledSinceLastFunction()
         locationClient
             .getLocationUpdates(FIVE_SEC, MIN_DIST)
             .catch { e -> e.printStackTrace() }
             .onEach { location ->
+                locations.add(location)
+                val distance = distanceTravelled(location)
+                totalDistanceWalked += distance
+
                 val lat = location.latitude
                 val long = location.longitude
                 val updatedNotification = notification.setContentText(
-                    "Location: ($lat, $long)"
+                    "Location: ($totalDistanceWalked)"
                 )
                 notificationManager.notify(notificationId, updatedNotification.build())
             }
@@ -91,9 +97,32 @@ class LocationService : Service() {
         serviceScope.cancel()
     }
 
+    private fun getDistanceTravelledSinceLastFunction(): (Location) -> (Float) {
+        var previous: Location? = null
+        return { location ->
+            previous?.let {
+                val results: FloatArray = FloatArray(1)
+                Location.distanceBetween(
+                    it.latitude,
+                    it.longitude,
+                    location.latitude,
+                    location.longitude,
+                    results
+                )
+                results[0]
+            } ?: run {
+                previous = location
+                0f
+            }
+        }
+    }
+
     companion object {
         const val ACTION_START = "ACTION_START"
         const val ACTION_STOP = "ACTION_STOP"
         const val channelId = "location"
+
+        private val locations: MutableList<Location> = mutableListOf()
+        private var totalDistanceWalked = 0f
     }
 }
