@@ -12,15 +12,19 @@ import android.content.Intent
 import android.location.Location
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
+import androidx.lifecycle.MutableLiveData
 import com.example.runningwithbill.R
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlin.math.roundToInt
 
-const val FIVE_SEC: Long = 5 * 1000
+const val UPDATE_INTERVAL: Long = 5 * 1000
 const val MIN_DIST: Float = 3f
 
 class LocationService : Service() {
@@ -68,17 +72,22 @@ class LocationService : Service() {
 
         val distanceTravelled = getDistanceTravelledSinceLastFunction()
         locationClient
-            .getLocationUpdates(FIVE_SEC, MIN_DIST)
+            .getLocationUpdates(UPDATE_INTERVAL, MIN_DIST)
             .catch { e -> e.printStackTrace() }
             .onEach { location ->
-                locations.add(location)
+                val newLocations = locations.value?.toMutableList()?.apply {
+                    add(location)
+                }
+                newLocations?.let{
+                    locations.postValue(it)
+                }
                 val distance = distanceTravelled(location)
-                totalDistanceWalked += distance
+                // Log.d("Data", "start")
+                totalDistanceWalked.postValue(totalDistanceWalked.value?.plus(distance))
+                // totalDistanceWalked.value?.toString()?.let { Log.d("Data", it) }
 
-                val lat = location.latitude
-                val long = location.longitude
                 val updatedNotification = notification.setContentText(
-                    "Location: ($totalDistanceWalked)"
+                    "Location: (${totalDistanceWalked.value?.roundToInt()} m)"
                 )
                 notificationManager.notify(notificationId, updatedNotification.build())
             }
@@ -122,7 +131,7 @@ class LocationService : Service() {
         const val ACTION_STOP = "ACTION_STOP"
         const val channelId = "location"
 
-        private val locations: MutableList<Location> = mutableListOf()
-        private var totalDistanceWalked = 0f
+        val locations =  MutableLiveData<List<Location>>(mutableListOf())
+        val totalDistanceWalked = MutableLiveData(0f)
     }
 }
