@@ -43,6 +43,7 @@ public class PetFragment extends Fragment {
     private int bodyHeight = 0;
 
     private int foodState = -1;
+    final private int MAX_EXP = 100;
 
     private ConstraintLayout layout;
 
@@ -353,7 +354,15 @@ public class PetFragment extends Fragment {
             petDb.addStatPoints(-1);
         }
     }
+    private void levelUp() {
+        petDb.readExperience.observe(getViewLifecycleOwner(), nr-> {
+                    if(nr > MAX_EXP) {
+                        //petDb.addLevel(1);
+                        petDb.addExperience(-100);
+                    }
+                });
 
+    }
     private void resetDataBase() {
         petDb.readStatPoints.observe(getViewLifecycleOwner(), nr -> petDb.addStatPoints(-nr + 10));
         petDb.readBeakLenght.observe(getViewLifecycleOwner(), nr -> petDb.addBeakLength(-nr + 1));
